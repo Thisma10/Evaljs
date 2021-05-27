@@ -1,0 +1,59 @@
+*{
+    width:100%
+}
+
+header {
+    width:100%;
+    display: inline-flex;
+}
+
+
+h1 {
+    align-items: center;
+    text-align: center;
+    font-weight: lighter;
+}
+
+h2 {
+    align-items: center;
+    text-align: center;
+    font-weight: lighter;
+}
+
+h4 {
+    align-items: center;
+    text-align: center;
+    font-weight: lighter;
+}
+
+svg {
+    height: 2em;
+    width: 2em;
+}
+
+.size {
+    height: 1em;
+    width: 1em;
+}
+
+.cadrerouge {
+    background-color: red;
+    align-items: center;
+    text-align: center;
+}
+
+.white {
+    color: white;
+    align-items: center;
+    text-align: center;
+}
+
+.centre {
+    align-items: center;
+    text-align: center;
+}
+
+.sizede {
+    height: 10em;
+    width: 10em;
+}
