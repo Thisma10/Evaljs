@@ -37,9 +37,6 @@ class Joueur {
     valeurde = rand
     if (valeurde = 1) {
       tour = 2
-      else {
-
-      }
       adversaire.affichePoints()
       ++this.tour
     }
@@ -61,7 +58,7 @@ let joueur2 = new Joueur('Joueur', '2', 0, 0)
 let partie = new Partie(2, [joueur1, joueur2])
 
 //Déroulement de la partie
-for (let tour=0; points<100) {
+for (let tour=0; points<100; ) {
   joueur1.de
   
   joueur2.de
@@ -73,7 +70,7 @@ joueur2.affichePoints()
 
 partie.vainqueur()
 
-var button = document.getElementById('newgame');
+var newgame = document.getElementById('newgame');
 
 function evenement() {
   alert('Vous avez cliqué sur le bouton')
@@ -81,7 +78,14 @@ function evenement() {
 
 button.addEventListener('click', evenement)
 
-var button = document.getElementById('rolldice');
+const rolldice = document.getElementById('rolldice');
+
+rolldice.addEventListener('click', event => {
+  alert('Vous avez cliqué sur le bouton')
+})
+
+
+var hold = document.getElementById('hold');
 
 function evenement() {
   alert('Vous avez cliqué sur le bouton')
@@ -89,10 +93,44 @@ function evenement() {
 
 button.addEventListener('click', evenement)
 
-var button = document.getElementById('hold');
+/* a utilisé pour faire les if des lancer de dé
+<div>
+    <button id='handler'>Event</button>
+</div>
+<div id='stringText'>
+    <h4>Some Description</h4>
+    <p>
+        Some more information
+    </p>
+</div>
 
-function evenement() {
-  alert('Vous avez cliqué sur le bouton')
+<script>
+window.onload = function(){
+ document.getElementById("handler").addEventListener("click", display, true);
+};
+   
+    function display() {
+
+        if (document.getElementById("stringText").style.display === "block") {
+            document.getElementById("stringText").style.display = "none";
+        } else {
+            document.getElementById("stringText").style.display = "block";
+        }
+
+    };
+
+</script>
+*/
+
+/* a utiliser pour les dé
+var btn = document.querySelector('button');
+
+function random(number) {
+  return Math.floor(Math.random()*(number+1));
 }
 
-button.addEventListener('click', evenement)
+btn.onclick = function() {
+  var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+  document.body.style.backgroundColor = rndCol;
+}
+*/
