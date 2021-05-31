@@ -78,11 +78,18 @@ function evenement() {
 
 button.addEventListener('click', evenement)
 
-const rolldice = document.getElementById('rolldice');
 
-rolldice.addEventListener('click', event => {
+function rolldice () {
+
+  document.getElementById('rolldice');
+
   alert('Vous avez cliqué sur le bouton')
-})
+
+}
+
+
+
+
 
 
 var hold = document.getElementById('hold');
