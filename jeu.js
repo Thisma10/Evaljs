@@ -1,143 +1,106 @@
-class Partie {
-  constructor(tour, joueurs) {
-    this.tour = tour
-    this.joueurs = joueurs
-    this.joueurVainqueur = null
-  }
+/*
+GAME RULES:
 
-  vainqueur() {
-    var pts = 0
-    this.joueurs.forEach(joueur => {
-      this.joueurVainqueur = joueur.points > pts ? joueur : this.joueurVainqueur
-      pts = joueur.points
-    })
+- The game has 2 players, playing in rounds
+- In each turn, a player rolls a dice as many times as he whishes. Each result get added to his ROUND score
+- BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the next player's turn
+- The player can choose to 'Hold', which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn
+- The first player to reach 100 points on GLOBAL score wins the game
 
-    if (this.joueurVainqueur === null) {
-      console.log('Oups personne n\'a gagné !')
-      return;
-    }
-    
-    console.log(`${this.joueurVainqueur.identite()} gagne la partie avec ${this.joueurVainqueur.points} points`)
-  }
-}
+*/
 
-class Joueur {
-  constructor(nom, prenom, points, tour) {
-    this.nom = nom
-    this.prenom = prenom
-    this.points = 100
-    this.tour = 0
-  }
-  
-  rand(nb) {
-    return Math.floor(Math.random() * Math.floor(nb));
-  }
-  
-  de(){
-    valeurde = rand
-    if (valeurde = 1) {
-      tour = 2
-      adversaire.affichePoints()
-      ++this.tour
-    }
-  }
+var scores, roundScore, activePlayer, gamePlaying;
 
-  identite() {
-    return `${this.nom} ${this.prenom}`
-  }
-  
-  affichePoints() {
-    console.log(`${this.identite()} possède ${this.points} points`)
-  }
-  
-}
-
-let joueur1 = new Joueur('Joueur', '1', 0, 0)
-let joueur2 = new Joueur('Joueur', '2', 0, 0)
-
-let partie = new Partie(2, [joueur1, joueur2])
-
-//Déroulement de la partie
-for (let tour=0; points<100; ) {
-  joueur1.de
-  
-  joueur2.de
- 
-}
-
-joueur1.affichePoints()
-joueur2.affichePoints()
-
-partie.vainqueur()
-
-var newgame = document.getElementById('newgame');
-
-function evenement() {
-  alert('Vous avez cliqué sur le bouton')
-}
-
-button.addEventListener('click', evenement)
+init();
 
 
-function rolldice () {
+document.querySelector('.btn-roll').addEventListener('click', function() {
+    if(gamePlaying) {
+        // 1. Random number
+        var dice = Math.floor(Math.random() * 6) + 1;
 
-  document.getElementById('rolldice');
-
-  alert('Vous avez cliqué sur le bouton')
-
-}
-
-
-
-
+        //2. Display the result
+        var diceDOM = document.querySelector('.dice');
+        diceDOM.style.display = 'block';
+        diceDOM.src = 'dice-' + dice + '.png';
 
 
-var hold = document.getElementById('hold');
-
-function evenement() {
-  alert('Vous avez cliqué sur le bouton')
-}
-
-button.addEventListener('click', evenement)
-
-/* a utilisé pour faire les if des lancer de dé
-<div>
-    <button id='handler'>Event</button>
-</div>
-<div id='stringText'>
-    <h4>Some Description</h4>
-    <p>
-        Some more information
-    </p>
-</div>
-
-<script>
-window.onload = function(){
- document.getElementById("handler").addEventListener("click", display, true);
-};
-   
-    function display() {
-
-        if (document.getElementById("stringText").style.display === "block") {
-            document.getElementById("stringText").style.display = "none";
+        //3. Update the round score IF the rolled number was NOT a 1
+        if (dice !== 1) {
+            //Add score
+            roundScore += dice;
+            document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
-            document.getElementById("stringText").style.display = "block";
+            //Next player
+            nextPlayer();
         }
+    }    
+});
 
-    };
 
-</script>
-*/
+document.querySelector('.btn-hold').addEventListener('click', function() {
+    if (gamePlaying) {
+        // Add CURRENT score to GLOBAL score
+        scores[activePlayer] += roundScore;
 
-/* a utiliser pour les dé
-var btn = document.querySelector('button');
+        // Update the UI
+        document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
-function random(number) {
-  return Math.floor(Math.random()*(number+1));
+        // Check if player won the game
+        if (scores[activePlayer] >= 100) {
+            document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+            document.querySelector('.dice').style.display = 'none';
+            document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+            document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+            gamePlaying = false;
+        } else {
+            //Next player
+            nextPlayer();
+        }
+    }
+});
+
+
+function nextPlayer() {
+    //Next player
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    roundScore = 0;
+
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    //document.querySelector('.player-0-panel').classList.remove('active');
+    //document.querySelector('.player-1-panel').classList.add('active');
+
+    document.querySelector('.dice').style.display = 'none';
 }
 
-btn.onclick = function() {
-  var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
-  document.body.style.backgroundColor = rndCol;
+document.querySelector('.btn-new').addEventListener('click', init);
+
+function init() {
+    scores = [0, 0];
+    activePlayer = 0;
+    roundScore = 0;
+    gamePlaying = true;
+    
+    document.querySelector('.dice').style.display = 'none';
+
+    document.getElementById('score-0').textContent = '0';
+    document.getElementById('score-1').textContent = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+    document.getElementById('name-0').textContent = 'Player 1';
+    document.getElementById('name-1').textContent = 'Player 2';
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
 }
-*/
+
+//document.querySelector('#current-' + activePlayer).textContent = dice;
+//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
+//var x = document.querySelector('#score-0').textContent;
