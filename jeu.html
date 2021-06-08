@@ -1,44 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
-        
-    
-        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
-        <link type="text/css" rel="stylesheet" href="jeu.css">
-        <link rel="stylesheet"  href="bootstrap.min.css" >
-        
-        <title>Dice Game</title>
-    </head>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Jeu" content="Petit jeu simple, pour évaluation des connaissance Javascript"/>
+    <title>(Cutullic Mathis)</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet"  href="bootstrap.min.css" >
+    <link rel="stylesheet"  href="jeu.css">
+</head>
+<body>
 
-    <body>
-        <div class="wrapper clearfix">
-            <div class="player-0-panel active">
-                <div class="player-name" id="name-0">Player 1</div>
-                <div class="player-score" id="score-0">10</div>
-                <div class="player-current-box">
-                    <div class="player-current-label">Current</div>
-                    <div class="player-current-score" id="current-0">10</div>
-                </div>
-            </div>
-            
-            <div class="player-1-panel">
-                <div class="player-name" id="name-1">Player 2</div>
-                <div class="player-score" id="score-1">10</div>
-                <div class="player-current-box">
-                    <div class="player-current-label">Current</div>
-                    <div class="player-current-score" id="current-1">10</div>
-                </div>
-            </div>
-            
-            <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
-            <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
-            <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
-            
-            <img src="de-5.jpg" alt="Dice" class="de">
-        </div>
+    <header>
         
+    </header>
+
+    <main>
+    <div class="wrapper">
+        <div>
+            <h1>
+                <button id="newgame">
+                    <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
+                </button>
+            </h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col centre">
+                    <div class="row player-0-panel active">
+                        <div class="player-name" id="name-0">Player 1</div>
+                        <div class="player-score" id="score-0">10</div>
+                        <div class="player-current-box">                            
+                        </div>
+                    </div>
+                    <div class="row cadrerouge">
+                        <div class="player-current-label">Current</div>
+                        <br >
+                        <br >
+                        <div class="player-current-score white" id="current-0">10</div>
+                    </div>
+                </div>
+
+                <div class="col centre">
+                    <img src="de-5.jpg" alt="Dice" class="de">
+                    <br >
+                    <br >
+                        <div> 
+                            <h4 class="row">
+                                <button type="button" id="rolldice">
+                                    <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
+                                </button>
+                            </h4>
+                            <h4 class="row">
+                                <button id="hold">
+                                    <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
+                                </button>
+                            </h4>
+                        </div>
+                </div>
+
+                <div class="col centre">
+                    <div class="row player-1-panel">
+                        <div class="player-name" id="name-1">Player 2</div>
+                        <div class="player-score" id="score-1">10</div>
+                        <div class="player-current-box">    
+                        </div>
+                    </div>
+                    <div class="row cadrerouge">
+                        <div class="player-current-label">Current</div>
+                        <br >
+                        <br >
+                        <div class="player-current-score white" id="current-1">10</div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+        
+    <footer>
+        
+    </footer>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="jeu.js"></script>
-    </body>
+</body>
 </html>
