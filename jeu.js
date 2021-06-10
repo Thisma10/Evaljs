@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying;
+let scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
@@ -17,10 +17,10 @@ init();
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gamePlaying) {
         // 1. Random number
-        var dice = Math.floor(Math.random() * 6) + 1;
+        let dice = Math.floor(Math.random() * 6) + 1;
 
         //2. Display the result
-        var diceDOM = document.querySelector('.de');
+        let diceDOM = document.querySelector('.de');
         diceDOM.style.display = 'block';
         diceDOM.src = 'de-' + dice + '.jpg';
 
@@ -29,7 +29,8 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         if (dice !== 1) {
             //Add score
             roundScore += dice;
-            document.querySelector('#current-' + activePlayer).textContent = roundScore;
+            /*document.querySelector('#current-' + activePlayer).textContent = roundScore;*/
+            document.querySelector('${#name}-${activePlayer}').textContent = roundScore;
         } else {
             //Next player
             nextPlayer();
@@ -86,7 +87,7 @@ function init() {
     roundScore = 0;
     gamePlaying = true;
     
-    /*document.querySelector('.de').style.display = 'none';*/
+    document.querySelector('.de').style.display = 'none';
 
     document.getElementById('score-0').textContent = '0';
     document.getElementById('score-1').textContent = '0';
@@ -103,4 +104,4 @@ function init() {
 
 //document.querySelector('#current-' + activePlayer).textContent = de;
 //document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + de + '</em>';
-//var x = document.querySelector('#score-0').textContent;
+//let x = document.querySelector('#score-0').textContent;

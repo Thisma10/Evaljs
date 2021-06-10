@@ -24,11 +24,6 @@ h4 {
     font-weight: bold;
 }
 
-svg {
-    height: 2em;
-    width: 2em;
-}
-
 .size {
     height: 1em;
     width: 1em;
@@ -108,6 +103,14 @@ svg {
     transform: translate( 0%, 0%);
 }
 
+.de {
+    position:absolute;
+    left: 50%;
+    /*top: 16.5rem;*/
+    transform: translate(-50%);
+    box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
+}
+
 button {  
     background-color: white;
     border: none;
@@ -130,19 +133,18 @@ button:focus {
 
 i {
     color: #EB4D4D;
-    display: inline-block;
     margin-right: 15px;
     font-size: 32px;
     line-height: 1;
-    vertical-align: text-top;
     margin-top: -4px;
     transition: margin 0.3s;
 }
-/*
-.btn-new { top: 45px;}
-.btn-roll { top: 403px;}
-.btn-hold { top: 467px;}
-*/
+
+.btn-new { transform: translate( 0%, 50%);}
+.btn-roll { transform: translate( 0%, 1000%);}
+.btn-hold { transform: translate( 0%, 1000%);}
+
+
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
